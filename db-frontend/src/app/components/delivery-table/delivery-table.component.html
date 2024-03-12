@@ -1,0 +1,31 @@
+<table *ngIf="(tableService.deliveries | async) != null && (tableService.deliveries | async)!.length != 0"
+	   class="rect-table p-5" id="action-table" aria-describedby="requestResults">
+	<thead>
+	<tr class="text-xs tablet:text-base">
+		<th>id</th>
+		<th>idGift</th>
+		<th>idChild</th>
+		<th>idAddress</th>
+		<th>place</th>
+	</tr>
+	</thead>
+	<tbody class="text-xs tablet:text-base">
+	<tr *ngFor="let resp of tableService.deliveries | async">
+		<td>
+			{{ resp.id }}
+		</td>
+		<td>
+			{{ resp.idGift}}
+		</td>
+		<td>
+			{{ resp.idChild}}
+		</td>
+		<td>
+			{{ resp.idAddress}}
+		</td>
+		<td>
+			{{ resp.place}}
+		</td>
+	</tr>
+	</tbody>
+</table>

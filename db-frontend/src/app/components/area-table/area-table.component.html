@@ -1,0 +1,31 @@
+<table *ngIf="(areaService.responses | async) != null && (areaService.responses | async)!.length != 0"
+	class="rect-bg rounded-2xl p-5" id="result-table" aria-describedby="requestResults">
+	<thead>
+		<tr class="text-xs tablet:text-base">
+			<th>X</th>
+			<th>Y</th>
+			<th>R</th>
+			<th>Попадание</th>
+			<th>Время выполнения</th>
+		</tr>
+	</thead>
+	<tbody class="text-xs tablet:text-base">
+		<tr *ngFor="let resp of areaService.responses | async">
+			<td>
+				{{ resp.x | number: '1.2-2'}}
+			</td>
+			<td>
+				{{ resp.y | number: '1.2-2'}}
+			</td>
+			<td>
+				{{ resp.r }}
+			</td>
+			<td class="text-[0px] tablet:text-base" [ngClass]="resp.inArea ? 'hit' : 'miss'">
+				{{ resp.inArea }}
+			</td>
+			<td>
+				{{ resp.completionTime | date : "ss" }} мс
+			</td>
+		</tr>
+	</tbody>
+</table>

@@ -1,0 +1,11 @@
+.logout-btn{
+    background-color: rgba(240, 241, 255, 1);
+    box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
+    align-self: center;
+}
+
+.logout{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}

@@ -1,0 +1,19 @@
+<table *ngIf="(tableService.storages | async) != null && (tableService.storages | async)!.length != 0"
+	class="rect-table p-5" id="action-table" aria-describedby="requestResults">
+	<thead>
+		<tr class="text-xs tablet:text-base">
+			<th>cellnumber</th>
+			<th>idGift</th>
+		</tr>
+	</thead>
+	<tbody class="text-xs tablet:text-base">
+		<tr *ngFor="let resp of tableService.storages | async">
+			<td>
+				{{ resp.cellnumber }}
+			</td>
+			<td>
+				{{ resp.idGift}}
+			</td>
+		</tr>
+	</tbody>
+</table>

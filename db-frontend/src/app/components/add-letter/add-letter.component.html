@@ -1,0 +1,141 @@
+<form #letterForm="ngForm"
+	class="text-xl px-4 tablet:px-20 py-16" (ngSubmit)="checkLetter()">
+
+	<a>Введите имя и фамилию ребенка</a>
+	<div class="flex flex-row">
+		<div class="flex flex-col">
+			<label>Имя ребенка:</label>
+			<input name="childName"
+				   [(ngModel)]="childName"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="childName" type="text" pInputText/>
+		</div>
+
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Фамилия ребенка:</label>
+			<input name="childSurname"
+				   [(ngModel)]="childSurname"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="childSurname" type="text" pInputText/>
+		</div>
+	</div>
+
+	<a>Введите адрес для доставки</a>
+	<div class="flex flex-row">
+		<div class="flex flex-col">
+			<label>Страна:</label>
+			<input name = "country1"
+				   [(ngModel)]="country1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="country1" type="text" pInputText />
+		</div>
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Регион:</label>
+			<input name = "region1"
+				   [(ngModel)]="region1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="region1" type="text" pInputText  />
+		</div>
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Город:</label>
+			<input name = "city1"
+				   [(ngModel)]="city1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="city" type="text" pInputText  />
+		</div>
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Улица:</label>
+			<input name = "street1"
+				   [(ngModel)]="street1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="street1" type="text" pInputText  />
+		</div>
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Дом:</label>
+			<input name = "house1"
+				   [(ngModel)]="house1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="house1" type="text" pInputText  />
+		</div>
+
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Квартира:</label>
+			<input name = "room1"
+				   [(ngModel)]="room1"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="room1" type="text" pInputText  />
+		</div>
+	</div>
+	
+
+	<a>Введите название подарка</a>
+	<div class="flex flex-col">
+		<label>Подарок:</label>
+		<input name = "giftName"
+			   [(ngModel)]="giftName"
+			   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+			   id="giftName" type="text" pInputText  />
+	</div>
+
+	<a>Введите действия ребенка</a>
+	<div class="flex flex-row">
+		<div class="flex flex-col">
+			<label>Поступок:</label>
+			<input name = "actions"
+				   [(ngModel)]="actions"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="actions" type="text" pInputText />
+		</div>
+
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Описание поступка:</label>
+			<input name = "descriptions"
+				   [(ngModel)]="descriptions"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="descriptions" type="text" pInputText />
+		</div>
+
+		<div class="flex flex-col" style="margin-left: 10px; min-width: 200px;">
+			<label>Это был хороший поступок:</label>
+			<div class="flex flex-col" style="margin-left: 10px; align-items: center" >
+				<input
+						type="checkbox"
+						id="positivities"
+						[(ngModel)]="positivities"
+						name="positivities"
+				>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex flex-row">
+		<div class="flex flex-col" style="margin-left: 10px; min-width: 200px;">
+			<label>Правдивость письма:</label>
+			<div class="flex flex-col" style="margin-left: 10px; align-items: center" >
+				<input
+						type="checkbox"
+						id="truth1"
+						[(ngModel)]="truth1"
+						name="truth1"
+				>
+			</div>
+		</div>
+		<div class="flex flex-col" style="margin-left: 10px; min-width: 200px;">
+			<label>Одобряете ли подарок</label>
+			<div class="flex flex-col" style="margin-left: 10px; align-items: center" >
+				<input
+						type="checkbox"
+						id="approval"
+						[(ngModel)]="approval1"
+						name="approval1"
+				>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex justify-between">
+		<button class="form-btn py-4 px-6 rounded-lg" type="submit">Отправить</button>
+
+		<button class="form-btn py-4 px-6 rounded-lg" type="reset">Сброс</button>
+	</div>
+</form>

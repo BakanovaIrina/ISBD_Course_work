@@ -1,0 +1,34 @@
+.form-btn{
+	background-color: #FFFFFF;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
+}
+
+.grid-rows-same-h {
+	grid-auto-rows: 1fr;
+}
+
+/* Стили для чекбокса */
+input[type="checkbox"] {
+	margin-top: 15px; /* Отступ сверху */
+	width: 20px; /* Ширина */
+	height: 20px; /* Высота */
+	-webkit-appearance: none; /* Убираем стандартный внешний вид для кастомизации */
+	-moz-appearance: none;
+	appearance: none;
+	outline: none; /* Убираем обводку */
+	border: 1px solid #ccc; /* Граница чекбокса */
+	border-radius: 3px; /* Скругление углов */
+}
+
+/* Стили для фонового цвета чекбокса в состоянии "checked" */
+input[type="checkbox"]:checked {
+	background-color: #648A5C; /* Фоновый цвет чекбокса */
+}
+
+/* Стили для иконки чекбокса в состоянии "checked" */
+input[type="checkbox"]:checked::after {
+	color: #fff; /* Цвет иконки */
+	font-size: 16px; /* Размер иконки */
+	line-height: 20px; /* Выравнивание по вертикали */
+	text-align: center; /* Выравнивание по горизонтали */
+}

@@ -1,0 +1,31 @@
+<table *ngIf="(tableService.gift_statuses| async) != null && (tableService.gift_statuses | async)!.length != 0"
+	class="rect-table p-5" id="action-table" aria-describedby="requestResults">
+	<thead>
+		<tr class="text-xs tablet:text-base">
+			<th>id</th>
+			<th>idGift</th>
+			<th>time</th>
+			<th>approval</th>
+			<th>status_location</th>
+		</tr>
+	</thead>
+	<tbody class="text-xs tablet:text-base">
+		<tr *ngFor="let resp of tableService.gift_statuses | async">
+			<td>
+				{{ resp.id }}
+			</td>
+			<td>
+				{{ resp.idGift }}
+			</td>
+			<td>
+				{{ resp.time }}
+			</td>
+			<td>
+				{{ resp.approval }}
+			</td>
+			<td>
+				{{ resp.status_location }}
+			</td>
+		</tr>
+	</tbody>
+</table>

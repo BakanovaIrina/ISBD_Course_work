@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+	font-family: sans-serif;
+	background: white;
+}
+
+#header{
+	width: 100%;
+	font-size: 18px;
+	background: linear-gradient(45deg, #FD2B34, #95090F);
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.rect-bg {
+	background-blend-mode: overlay;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
+	box-sizing: border-box;
+	background-color: #648A5C;
+	justify-content: center;
+	margin-bottom: 5%;
+}
+
+.rect-table {
+	background-blend-mode: overlay;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
+	box-sizing: border-box;
+	background-color: #B68C57;
+	width: 100%;
+	color: white;
+	justify-content: center;
+	margin-bottom: 5%;
+}
+
+thead {
+	background-color: #764F1C;
+}
+
+.rect-form {
+	background-blend-mode: overlay;
+	box-shadow: 0 5px 5px rgb(0 0 0 / 20%);
+	box-sizing: border-box;
+	background-color: #FFE773;
+	width: 100%;
+	color: white;
+	justify-content: center;
+	margin-bottom: 5%;
+}

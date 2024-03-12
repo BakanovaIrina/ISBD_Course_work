@@ -1,0 +1,28 @@
+<form #letterForm="ngForm"
+	class="text-xl px-4 tablet:px-20 py-16" (ngSubmit)="checkLetter()">
+
+	<a>Введите id</a>
+	<div class="flex flex-row">
+		<div class="flex flex-col">
+			<label>Эльфа:</label>
+			<input name="idElf"
+				   [(ngModel)]="idElf"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="idElf" type="text" pInputText/>
+		</div>
+
+		<div class="flex flex-col" style="margin-left: 10px;">
+			<label>Производства:</label>
+			<input name="idProd"
+				   [(ngModel)]="idProd"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="idProd" type="text" pInputText/>
+		</div>
+	</div>
+
+	<div class="flex justify-between">
+		<button class="form-btn py-4 px-6 rounded-lg" type="submit">Отправить</button>
+
+		<button class="form-btn py-4 px-6 rounded-lg" type="reset">Сброс</button>
+	</div>
+</form>

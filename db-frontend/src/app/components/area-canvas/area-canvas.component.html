@@ -1,0 +1,12 @@
+<div class="relative rect-bg rounded-xl tablet:p-6">
+	<canvas #canvas class="relative" (click)="sendReq($event)" width="300" height="300"></canvas>
+</div>
+
+<label class="text-xl text-center p-4">Введите R для отрисовки</label>
+
+<p-listbox
+		[options]="rList"
+		[(ngModel)]="rValue"
+		(onChange)="redraw()"
+		[listStyle]="{'max-height':'220px'}">
+</p-listbox>

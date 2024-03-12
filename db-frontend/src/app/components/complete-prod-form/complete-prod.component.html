@@ -1,0 +1,18 @@
+<form #transferForm="ngForm"
+	  class="text-xl px-4 tablet:px-20 py-16" (ngSubmit)="checkLetter()">
+
+	<a>Введите id подарка, производство которого вы завершили</a>
+	<div class="flex flex-col">
+		<label>Подарок:</label>
+		<input name = "giftId"
+			   [(ngModel)]="giftId"
+			   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+			   id="giftName" type="text" pInputText/>
+	</div>
+
+	<div class="flex justify-between">
+		<button class="form-btn py-4 px-6 rounded-lg" type="submit">Отправить</button>
+
+		<button class="form-btn py-4 px-6 rounded-lg" type="reset">Сброс</button>
+	</div>
+</form>

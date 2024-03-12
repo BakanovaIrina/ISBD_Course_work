@@ -1,0 +1,37 @@
+<form #pointForm="ngForm"
+	class="rect-bg rounded-xl text-xl px-4 tablet:px-20 py-16" (ngSubmit)="checkPoint()">
+	<div class="grid grid-cols-3 tablet:grid-cols-2 grid-rows-same-h gap-4 tablet:gap-8 mb-8">
+			<div class="flex">
+				<p style="margin-right: 10px">X:</p>
+				<p-listbox name = "x"
+						[options]="xList"
+						[(ngModel)]="xValue"
+						[listStyle]="{'max-height':'150px', 'max-width' : '150px'}">
+				</p-listbox>
+			</div>
+
+		<div class="flex flex-col">
+			<label>Y:</label>
+			<input name = "y"
+				   [(ngModel)]="yValue"
+				   [ngStyle]="{'max-height':'150px', 'max-width' : '150px'}"
+				   id="y" type="text" pInputText maxlength="6" pattern=^-?\d+[.,]?\d*$/>
+		</div>
+
+
+		<div class="flex" >
+			<p style="margin-right: 10px">R:</p>
+			<p-listbox name ="r"
+					[options]="rList"
+					[(ngModel)]="rValue"
+					[listStyle]="{'max-height':'150px', 'max-width' : '150px'}">
+			</p-listbox>
+		</div>
+
+	</div>
+	<div class="flex justify-between">
+		<button class="form-btn py-4 px-6 rounded-lg" type="submit">Отправить</button>
+
+		<button class="form-btn py-4 px-6 rounded-lg" type="reset">Сброс</button>
+	</div>
+</form>

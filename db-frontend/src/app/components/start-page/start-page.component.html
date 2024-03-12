@@ -1,0 +1,7 @@
+<div class="flex justify-center" *ngIf="(loginService.user | async) == undefined; else logout">
+	<app-login-form></app-login-form>
+</div>
+
+<ng-template #logout>
+	<app-logout></app-logout>
+</ng-template>
