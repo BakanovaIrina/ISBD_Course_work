@@ -17,50 +17,27 @@ public class Actions {
     @Column(name = "positivity")
     private boolean positivity;
 
-    public Actions(long idLetter, String name, String description, boolean positivity) {
-        this.idLetter = idLetter;
-        this.name = name;
-        this.description = description;
-        this.positivity = positivity;
+    public String getName() {
+        return name;
     }
 
-    public Actions() {
-
+    public long getId() {
+        return id;
     }
 
     public long getIdLetter() {
         return idLetter;
     }
 
-    public void setIdLetter(long idLetter) {
-        this.idLetter = idLetter;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public boolean isPositivity() {
         return positivity;
     }
 
-    public void setPositivity(boolean positivity) {
-        this.positivity = positivity;
-    }
-
-    public long getId() {
-        return id;
+    public void setName(String name) {
+        this.name = name;
     }
 }

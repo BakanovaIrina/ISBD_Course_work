@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ChildRepository extends JpaRepository<Child, Long> {
-
-    public Child findChildById(Long id);
 }

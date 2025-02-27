@@ -25,38 +25,9 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .httpBasic().disable()
                         .csrf().disable()
                         .authorizeHttpRequests(requests -> requests
-                                .requestMatchers("/main", "/api/area")
-                                .authenticated()
-                                .anyRequest()
-                                .permitAll())
-                        .addFilterAfter(authFilter, UsernamePasswordAuthenticationFilter.class)
-                        .build();
-        }
-
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
-                        .allowedMethods("*");
-        }
-
-}
-/*
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig implements WebMvcConfigurer {
-
-        @Autowired
-        private AuthFilter authFilter;
-
-        @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                return http
-                        .httpBasic().disable()
-                        .csrf().disable()
-                        .authorizeHttpRequests(requests -> requests
-                                .anyRequest()
-                                .permitAll())
+                                .requestMatchers("/api/tables/**").authenticated()
+                                .requestMatchers("/api/auth/**", "/error").permitAll()
+                                .anyRequest().authenticated())
                         .addFilterAfter(authFilter, UsernamePasswordAuthenticationFilter.class)
                         .build();
         }
@@ -69,4 +40,3 @@ public class SecurityConfig implements WebMvcConfigurer {
         }
 }
 
- */

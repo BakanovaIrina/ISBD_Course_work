@@ -10,16 +10,6 @@ import java.util.List;
 
 public interface ActionRepository extends JpaRepository<Actions, Long> {
 
-    public Actions findActionById(Long id);
-
-    public Boolean getPositivityById(Long id);
-
     @Query(value = "SELECT * FROM actions;", nativeQuery = true)
     public List<Actions> findAll();
-
-    @Query("SELECT a FROM Actions a WHERE a.idLetter = :id")
-    Actions findByLetterId(@Param("id") Long id);
-
-
-
 }

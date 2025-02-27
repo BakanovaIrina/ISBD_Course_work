@@ -26,5 +26,4 @@ public class PageNotFoundController implements ErrorController {
 
         return "error";
     }
-
 }

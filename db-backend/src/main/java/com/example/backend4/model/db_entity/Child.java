@@ -13,14 +13,6 @@ public class Child {
     @Column(name = "surname")
     private String surname;
 
-    public Child(String name, String surname) {
-        this.name = name;
-        this.surname = surname;
-    }
-
-    public Child() {
-    }
-
     public String getName() {
         return name;
     }
@@ -31,10 +23,6 @@ public class Child {
 
     public String getSurname() {
         return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public long getId() {
