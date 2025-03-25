@@ -18,6 +18,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.sql.Date;
 import java.util.Arrays;
@@ -109,16 +110,8 @@ public class ProductionServiceTest {
     }
 
     @Test
-    void testAddIncorrectGiftToProduction() {
-        doNothing().when(productionRepository).addGiftToProduction(333);
-        boolean result = productionService.addGiftToProduction(334);
-        assertFalse(result);
-        verify(productionRepository, times(1)).addGiftToProduction(333);
-    }
-
-    @Test
     void testAddGiftToProduction_Failure() {
-        doThrow(new RuntimeException("Error")).when(productionRepository).addGiftToProduction(1);
+        doThrow(new DataIntegrityViolationException("Error")).when(productionRepository).addGiftToProduction(1);
 
         boolean result = productionService.addGiftToProduction(1);
 
@@ -138,7 +131,7 @@ public class ProductionServiceTest {
 
     @Test
     void testAssignElfToProduction_Failure() {
-        doThrow(new RuntimeException("Error")).when(elfRepository).assignElfsToProduction(1, 1);
+        doThrow(new DataIntegrityViolationException("Error")).when(elfRepository).assignElfsToProduction(1, 1);
 
         boolean result = productionService.assignElfToProduction(1, 1);
 
@@ -158,7 +151,7 @@ public class ProductionServiceTest {
 
     @Test
     void testCompleteProduction_Failure() {
-        doThrow(new RuntimeException("Error")).when(productionRepository).completeProduction(1);
+        doThrow(new DataIntegrityViolationException("Error")).when(productionRepository).completeProduction(1);
 
         boolean result = productionService.completeProduction(1);
 

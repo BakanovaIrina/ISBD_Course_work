@@ -13,6 +13,7 @@ import com.example.backend4.services.LocationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.Arrays;
@@ -86,7 +87,7 @@ class LocationServiceTest {
 
     @Test
     void testMoveGiftToDelivery_Failure1() {
-        doThrow(new RuntimeException("Database error")).when(deliveryRepository).moveGiftToDelivery();
+        doThrow(new DataIntegrityViolationException("Database error")).when(deliveryRepository).moveGiftToDelivery();
 
         boolean result = locationService.moveGiftToDelivery();
 
@@ -105,7 +106,7 @@ class LocationServiceTest {
 
     @Test
     void testMoveGiftToDelivery_Failure() {
-        doThrow(new RuntimeException("Database error")).when(deliveryRepository).moveGiftToDelivery();
+        doThrow(new DataIntegrityViolationException("Database error")).when(deliveryRepository).moveGiftToDelivery();
         boolean result = locationService.moveGiftToDelivery();
 
         assertFalse(result);
