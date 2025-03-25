@@ -15,6 +15,15 @@ public class Elf_production {
     @Column(name = "idproduction")
     private long idProduction;
 
+    public Elf_production(long id, long idElf, long idProduction) {
+        this.id = id;
+        this.idElf = idElf;
+        this.idProduction = idProduction;
+    }
+
+    public Elf_production() {
+    }
+
     public long getId() {
         return id;
     }

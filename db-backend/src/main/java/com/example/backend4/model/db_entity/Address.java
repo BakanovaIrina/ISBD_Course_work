@@ -23,6 +23,17 @@ public class Address {
     public Address() {
     }
 
+    public Address(long id, String country, String region, String city, String street,
+                   String house, Integer room) {
+        this.id = id;
+        this.country = country;
+        this.region = region;
+        this.city = city;
+        this.street = street;
+        this.house = house;
+        this.room = room;
+    }
+
     public long getId() {
         return id;
     }

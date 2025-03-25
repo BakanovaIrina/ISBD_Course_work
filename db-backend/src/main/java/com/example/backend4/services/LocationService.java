@@ -7,6 +7,7 @@ import com.example.backend4.repository.AddressRepository;
 import com.example.backend4.repository.DeliveryRepository;
 import com.example.backend4.repository.StorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class LocationService {
             deliveryRepository.moveGiftToDelivery();
             return true;
         }
-        catch (Exception e){
+        catch (DataIntegrityViolationException e){
             return false;
         }
     }

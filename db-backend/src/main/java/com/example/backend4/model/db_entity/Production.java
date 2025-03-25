@@ -14,6 +14,15 @@ public class Production {
     @Column(name = "workstatus")
     private String workstatus;
 
+    public Production(long id, long idGift, String workstatus) {
+        this.id = id;
+        this.idGift = idGift;
+        this.workstatus = workstatus;
+    }
+
+    public Production() {
+    }
+
     public long getId() {
         return id;
     }

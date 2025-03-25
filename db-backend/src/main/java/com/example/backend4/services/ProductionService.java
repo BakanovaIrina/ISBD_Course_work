@@ -9,6 +9,7 @@ import com.example.backend4.repository.ElfRepository;
 import com.example.backend4.repository.ElfStatusRepository;
 import com.example.backend4.repository.ProductionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class ProductionService {
             productionRepository.addGiftToProduction(id);
             return true;
         }
-        catch (Exception e){
+        catch (DataIntegrityViolationException e){
             return false;
         }
     }
@@ -51,7 +52,7 @@ public class ProductionService {
             elfRepository.assignElfsToProduction(idElf, idProduction);
             return true;
         }
-        catch (Exception e){
+        catch (DataIntegrityViolationException e){
             return false;
         }
     }
@@ -61,7 +62,7 @@ public class ProductionService {
             productionRepository.completeProduction(id);
             return true;
         }
-        catch (Exception e){
+        catch (DataIntegrityViolationException e){
             return false;
         }
     }

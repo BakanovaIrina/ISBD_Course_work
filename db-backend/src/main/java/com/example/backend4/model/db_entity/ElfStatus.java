@@ -20,6 +20,16 @@ public class ElfStatus {
     @Column(name = "rest")
     private boolean rest;
 
+    public ElfStatus(long id, long idElf, Date time, boolean rest) {
+        this.id = id;
+        this.idElf = idElf;
+        this.time = time;
+        this.rest = rest;
+    }
+
+    public ElfStatus() {
+    }
+
     public long getId() {
         return id;
     }

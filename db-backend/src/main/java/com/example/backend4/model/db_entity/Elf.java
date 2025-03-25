@@ -18,4 +18,12 @@ public class Elf {
     public String getName() {
         return name;
     }
+
+    public Elf(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Elf() {
+    }
 }

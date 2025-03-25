@@ -17,10 +17,13 @@ public class ElfController {
 
     @PostMapping("/productions/{id}/complete")
     public ResponseEntity<Object> completeProduction(@PathVariable("id") Integer giftId){
-        if(productionService.completeProduction(giftId)){
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            if(productionService.completeProduction(giftId)){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        else {
+        catch(Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -58,25 +58,40 @@ public class SantaController {
 
     @PostMapping("/production/{id}")
     public ResponseEntity<Object> addProduction(@PathVariable("id") Integer giftId){
-        if(productionService.addGiftToProduction(giftId)){
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            if(productionService.addGiftToProduction(giftId)){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/assign_elf")
     public ResponseEntity<Object> assignElf(@RequestBody AssignElfRequest request){
-        if(productionService.assignElfToProduction(request.idElf, request.idProduction)){
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            if(productionService.assignElfToProduction(request.idElf, request.idProduction)){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/gifts/deliver")
     public ResponseEntity<Object> giftsToDelivery(){
-        if(locationService.moveGiftToDelivery()){
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            if(locationService.moveGiftToDelivery()){
+                return new ResponseEntity<>(HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

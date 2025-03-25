@@ -13,6 +13,14 @@ public class Storage {
     @Column(name = "idgift")
     private long idGift;
 
+    public Storage(long cellnumber, long idGift) {
+        this.cellnumber = cellnumber;
+        this.idGift = idGift;
+    }
+
+    public Storage() {
+    }
+
     public long getCellnumber() {
         return cellnumber;
     }

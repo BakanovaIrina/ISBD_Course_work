@@ -16,6 +16,14 @@ public class Delivery {
     @Column(name = "place")
     private String place;
 
+    public Delivery(long id, long idGift, long idChild, long idAddress, String place) {
+        this.id = id;
+        this.idGift = idGift;
+        this.idChild = idChild;
+        this.idAddress = idAddress;
+        this.place = place;
+    }
+
     public long getId() {
         return id;
     }
