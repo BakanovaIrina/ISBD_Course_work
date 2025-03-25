@@ -56,80 +56,81 @@ export class HttpTablesService implements TablesService {
         headers.append('Accept', 'application/json');
         headers.append('Content-Type', 'application/json');
 
-        return headers
+        return headers;
     }
+
 
     async getAction(){
         const headers = this.getHeaders();
 
-        this.httpClient.get<ActionResponse[]>('http://localhost:8080/api/tables/actions', { headers })
+        this.httpClient.get<ActionResponse[]>('http://localhost:8080/api/santa/actions', { headers })
             .subscribe((resp) => this.actions.next(resp))
 
     }
 
     async getAddress(){
         const headers = this.getHeaders();
-        this.httpClient.get<AddressResponse[]>('http://localhost:8080/api/tables/address', { headers })
+        this.httpClient.get<AddressResponse[]>('http://localhost:8080/api/santa/address', { headers })
             .subscribe((resp) => this.addresses.next(resp))
     }
 
     async getLetters(){
         const headers = this.getHeaders();
-        this.httpClient.get<LetterResponse[]>('http://localhost:8080/api/tables/letter', { headers })
+        this.httpClient.get<LetterResponse[]>('http://localhost:8080/api/santa/letters', { headers })
             .subscribe((resp) => this.letters.next(resp))
     }
 
     async getChildren(){
         const headers = this.getHeaders();
-        this.httpClient.get<ChildResponse[]>('http://localhost:8080/api/tables/child', { headers })
+        this.httpClient.get<ChildResponse[]>('http://localhost:8080/api/santa/children', { headers })
             .subscribe((resp) => this.children.next(resp))
     }
 
     async getDeliveries(){
         const headers = this.getHeaders();
-        this.httpClient.get<DeliveryResponse[]>('http://localhost:8080/api/tables/delivery', { headers })
+        this.httpClient.get<DeliveryResponse[]>('http://localhost:8080/api/shared/deliveries', { headers })
             .subscribe((resp) => this.deliveries.next(resp))
     }
 
     async getElves(){
         const headers = this.getHeaders();
-        this.httpClient.get<ElfResponse[]>('http://localhost:8080/api/tables/elf', { headers })
+        this.httpClient.get<ElfResponse[]>('http://localhost:8080/api/shared/elves', { headers })
             .subscribe((resp) => this.elves.next(resp))
     }
 
     async getElvesStatus(){
         const headers = this.getHeaders();
-        this.httpClient.get<ElfStatusResponse[]>('http://localhost:8080/api/tables/elf_status', { headers })
+        this.httpClient.get<ElfStatusResponse[]>('http://localhost:8080/api/shared/elf_status', { headers })
             .subscribe((resp) => this.elves_status.next(resp))
     }
 
     async getElvesProd(){
         const headers = this.getHeaders();
-        this.httpClient.get<ElfProdResponse[]>('http://localhost:8080/api/tables/elf_production', { headers })
+        this.httpClient.get<ElfProdResponse[]>('http://localhost:8080/api/shared/elf_production', { headers })
             .subscribe((resp) => this.elves_prod.next(resp))
     }
 
     async getGifts(){
         const headers = this.getHeaders();
-        this.httpClient.get<GiftResponse[]>('http://localhost:8080/api/tables/gift', { headers })
+        this.httpClient.get<GiftResponse[]>('http://localhost:8080/api/shared/gifts', { headers })
             .subscribe((resp) => this.gifts.next(resp))
     }
 
     async getGiftStatus(){
         const headers = this.getHeaders();
-        this.httpClient.get<GiftStatusResponse[]>('http://localhost:8080/api/tables/gift_status', { headers })
+        this.httpClient.get<GiftStatusResponse[]>('http://localhost:8080/api/shared/gift_status', { headers })
             .subscribe((resp) => this.gift_statuses.next(resp))
     }
 
     async getStorage(){
         const headers = this.getHeaders();
-        this.httpClient.get<StorageResponse[]>('http://localhost:8080/api/tables/storage', { headers })
+        this.httpClient.get<StorageResponse[]>('http://localhost:8080/api/shared/storages', { headers })
             .subscribe((resp) => this.storages.next(resp))
     }
 
     async getProduction(){
         const headers = this.getHeaders();
-        this.httpClient.get<ProductionResponse[]>('http://localhost:8080/api/tables/production', { headers })
+        this.httpClient.get<ProductionResponse[]>('http://localhost:8080/api/shared/productions', { headers })
             .subscribe((resp) => this.productions.next(resp))
     }
 
@@ -137,7 +138,7 @@ export class HttpTablesService implements TablesService {
 
         const requestBody = { ...letter};
 
-        this.httpClient.post('http://localhost:8080/api/tables/add_letter', requestBody,
+        this.httpClient.post('http://localhost:8080/api/santa/letter', requestBody,
             {headers: this.getHeaders()})
             .subscribe(
                 {
@@ -163,7 +164,7 @@ export class HttpTablesService implements TablesService {
 
         const requestBody = { ...transferToProd};
 
-        this.httpClient.post('http://localhost:8080/api/tables/add_prod', requestBody,
+        this.httpClient.post('http://localhost:8080/api/santa/production/' + transferToProd.giftId, requestBody,
             {headers: this.getHeaders()})
             .subscribe(
                 {
@@ -184,7 +185,7 @@ export class HttpTablesService implements TablesService {
         
         const requestBody = { ...assignElfResponse};
 
-        this.httpClient.post('http://localhost:8080/api/tables/assign_elf', requestBody,
+        this.httpClient.post('http://localhost:8080/api/santa/assign_elf', requestBody,
             {headers: this.getHeaders()})
             .subscribe(
                 {
@@ -204,7 +205,7 @@ export class HttpTablesService implements TablesService {
 
     moveGifts(): boolean {
 
-        this.httpClient.post('http://localhost:8080/api/tables/gifts_to_delivery',
+        this.httpClient.post('http://localhost:8080/api/santa/gifts/deliver', {},
             {headers: this.getHeaders()})
             .subscribe(
                 {
@@ -227,7 +228,7 @@ export class HttpTablesService implements TablesService {
 
         const requestBody = { ...transferToProd};
 
-        this.httpClient.post('http://localhost:8080/api/tables/complete_prod', requestBody,
+        this.httpClient.post('http://localhost:8080/api/elf/productions/' + transferToProd.giftId + "/complete", requestBody,
             {headers: this.getHeaders()})
             .subscribe(
                 {

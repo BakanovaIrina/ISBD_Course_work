@@ -13,17 +13,17 @@ export class AddLetterComponent {
 
 	public childName: string;
 	public childSurname: string;
-	public country1: string;
-	public region1: string;
-	public city1: string;
-	public street1: string;
-	public house1: string;
-	public room1: number;
+	public country: string;
+	public region: string;
+	public city: string;
+	public street: string;
+	public house: string;
+	public room: number;
 	public giftName: string;
 	public actions: string;
 	public descriptions: string;
-	public truth1: boolean;
-	public approval1: boolean;
+	public truth: boolean;
+	public approval: boolean;
 	public positivities: boolean;
 
 	constructor(
@@ -42,17 +42,17 @@ export class AddLetterComponent {
 		const letter = {
 			childName: this.childName,
 			childSurname: this.childSurname,
-			country1: this.country1,
-			region1: this.region1,
-			city1: this.city1,
-			street1: this.street1,
-			house1: this.house1,
-			room1: this.room1,
+			country: this.country,
+			region: this.region,
+			city: this.city,
+			street: this.street,
+			house: this.house,
+			room: this.room,
 			giftName: this.giftName,
 			actions: this.actions,
 			descriptions: this.descriptions,
-			truth1: this.truth1,
-			approval1: this.approval1,
+			truth: this.truth,
+			approval: this.approval,
 			positivities: this.positivities
 		};
 

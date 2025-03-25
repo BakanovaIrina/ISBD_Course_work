@@ -1,6 +1,5 @@
 package com.example.backend4.repository;
 
-import com.example.backend4.model.db_entity.Actions;
 import com.example.backend4.model.db_entity.Letter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +11,7 @@ import java.util.List;
 @Repository
 public interface LetterRepository extends JpaRepository<Letter, Long> {
     @Query(value = "SELECT * FROM letter;", nativeQuery = true)
-    public List<Letter> findAll();
+    List<Letter> findAll();
 
     @Transactional
     @Query(value = "SELECT add_letter("
@@ -25,11 +24,11 @@ public interface LetterRepository extends JpaRepository<Letter, Long> {
             + ":house1, "
             + ":room1, "
             + ":giftName, "
-            + ":actions, "
-            + ":descriptions, "
+            + "ARRAY[:actions], "
+            + "ARRAY[:descriptions], "
             + ":truth1, "
             + ":approval1, "
-            + ":positivities)", nativeQuery = true)
+            + "ARRAY[:positivities])", nativeQuery = true)
 
     void callAddLetterFunction(
             String childName,

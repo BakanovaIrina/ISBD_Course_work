@@ -3,6 +3,7 @@ package com.example.backend4.config;
 import com.example.backend4.filters.AuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+@ComponentScan(basePackages = "com.example.backend4")
 public class SecurityConfig implements WebMvcConfigurer {
 
         @Autowired
@@ -21,14 +23,18 @@ public class SecurityConfig implements WebMvcConfigurer {
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-                return http
-                        .httpBasic().disable()
-                        .csrf().disable()
+                return http.cors().and().csrf().disable()
+                        .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                         .authorizeHttpRequests(requests -> requests
-                                .requestMatchers("/api/tables/**").authenticated()
-                                .requestMatchers("/api/auth/**", "/error").permitAll()
-                                .anyRequest().authenticated())
-                        .addFilterAfter(authFilter, UsernamePasswordAuthenticationFilter.class)
+                                .requestMatchers("/api/auth")
+                                .permitAll()
+                                .requestMatchers("/api/santa/")
+                                .hasAuthority("SANTA")
+                                .requestMatchers("api/elf/")
+                                .hasAuthority("ELF")
+                                .requestMatchers("/api/shared/")
+                                .authenticated()
+                                .anyRequest().permitAll())
                         .build();
         }
 

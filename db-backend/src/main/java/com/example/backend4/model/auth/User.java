@@ -3,27 +3,36 @@ package com.example.backend4.model.auth;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Collections;
 
-@Entity(name = "Users")
+@Entity(name = "users")
 public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(unique = true)
     private String username;
+
     private String password;
 
-    public User() {
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
+
+    public User(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User() {}
 
     public long getId() {
         return id;
@@ -33,27 +42,25 @@ public class User implements UserDetails {
         this.id = id;
     }
 
+    @Override
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public Role getRole() {
+        return role;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + Long.hashCode(id);
         result = prime * result + ((username == null) ? 0 : username.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         return result;
@@ -76,11 +83,8 @@ public class User implements UserDetails {
         } else if (!username.equals(other.username))
             return false;
         if (password == null) {
-            if (other.password != null)
-                return false;
-        } else if (!password.equals(other.password))
-            return false;
-        return true;
+            return other.password == null;
+        } else return password.equals(other.password);
     }
 
     @Override

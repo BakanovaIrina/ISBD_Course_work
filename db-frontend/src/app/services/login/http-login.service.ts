@@ -26,15 +26,15 @@ export class HttpLoginService implements LoginService {
 	private isLogged = false;
 
 	login(user: User): void {
-		this.http.post<RegisterMessage>('http://localhost:8080/api/auth/login', user, {headers: this.getHeaders()})
+		this.http.post<RegisterMessage>('http://localhost:8080/api/auth/login', user, {headers: this.getHeaders(user)})
 			.subscribe({
 				next: (data) => {
 					//localStorage.setItem('password', (<RegisterMessage>data).message);
 					localStorage.setItem('password', user.password);
-					localStorage.setItem('user', JSON.stringify(user.username));
+					localStorage.setItem('user', user.username);
 					this.isLogged = true;
 
-					if(localStorage.getItem('user') == '"santa"'){
+					if(localStorage.getItem('user') == 'santa'){
 						this.router.navigate(['santa']).then(r => {})
 					}
 					else {
@@ -51,13 +51,20 @@ export class HttpLoginService implements LoginService {
 	}
 
 		register(user: User): void {
-			this.http.post<RegisterMessage>('http://localhost:8080/api/auth/register', user, {headers: this.getHeaders()})
+
+			const userWithRole = {
+				username: user.username,
+				password: user.password,
+				role: 'ELF'
+			};
+
+			this.http.post<RegisterMessage>('http://localhost:8080/api/auth/register', userWithRole, {headers: this.getHeaders(user)})
 				.subscribe(
 					{
 					next: (data) => {
 						//localStorage.setItem('password', (<RegisterMessage>data).message);
 						localStorage.setItem('password', user.password);
-						localStorage.setItem('user', JSON.stringify(user.username));
+						localStorage.setItem('user', user.username);
 						this.isLogged = true;
 						this.router.navigate(['main']).then(r => {})
 					},
@@ -76,10 +83,11 @@ export class HttpLoginService implements LoginService {
 		return this.isLogged;
 	}
 
-	private getHeaders(): HttpHeaders {
+	private getHeaders(user: User): HttpHeaders {
 
-		const headers = new HttpHeaders();
+		let headers = new HttpHeaders()
 
+		headers = headers.set("Authorization", user.username + ":" + user.password)
 		headers.append('Accept', 'application/json');
 		headers.append('Content-Type', 'application/json');
 
